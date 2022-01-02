@@ -2,17 +2,17 @@ import java.net.*;
 import java.io.*;
  
 class EchoClient {
- 
-    public static void main(String args[]) throws IOException {
-        
+    public static void main(String args[]) throws IOException {        
         Socket soc = new Socket(InetAddress.getLocalHost(), 95);
         BufferedReader br = new BufferedReader(new InputStreamReader(soc.getInputStream()));
         DataOutputStream dos = new DataOutputStream(soc.getOutputStream());
         BufferedReader kyrd = new BufferedReader(new InputStreamReader(System.in));
 
-        System.out.println("To start the dialog type the message in this client window \n Type exit to end"); 
-        boolean more = true;
-        while (more) {
+        System.out.println(
+            "To start the dialog type the message in this client window \n Type exit to end"
+        );
+
+        while(true) {
             String str = kyrd.readLine();
             dos.writeBytes(str);
             dos.write(13);

@@ -4,21 +4,10 @@ import java.io.*;
 class EchoServer {
  
     public static void main(String args[]) throws IOException {
-        ServerSocket ss = null;
-        try {
-            ss = new ServerSocket(95);
-        } catch (IOException ioe) {
-            System.out.println("Error finding port");
-            System.exit(1);
-        }
-        Socket soc = null;
-        try {
-            soc = ss.accept();
-            System.out.println("Connection accepted at :" + soc);
-        } catch (IOException ioe) {
-            System.out.println("Server failed to accept");
-            System.exit(1);
-        }
+        ServerSocket ss = new ServerSocket(95);        
+        Socket soc = ss.accept();
+        System.out.println("Connection accepted at :" + soc);
+
         DataOutputStream dos = new DataOutputStream(soc.getOutputStream());
         BufferedReader br = new BufferedReader(new InputStreamReader(soc.getInputStream()));
         String s;
