@@ -9,13 +9,18 @@ class Serverdns {
             while (true) {
                 byte[] sendbyte = new byte[1024];
                 byte[] receivebyte = new byte[1024];
+
+
                 DatagramPacket receiver = new DatagramPacket(receivebyte, receivebyte.length);
-                server.receive(receiver);
-                String str = new String(receiver.getData());
-                String s = str.trim();
-                //System.out.println(s);
                 InetAddress addr = receiver.getAddress();
+                
+                server.receive(receiver);
+                
+                String str = new String(receiver.getData());
                 int port = receiver.getPort();
+                String s = str.trim();
+
+                //System.out.println(s);
                 String ip[] = {
                     "163.53.78.87",
                     "176.13.69.63",
@@ -30,6 +35,7 @@ class Serverdns {
                     "www.gmail.com",
                     "www.google.com"
                 };
+                 
                 for (int i = 0; i < ip.length; i++) {
                     if (s.equals(ip[i])) {
                         sendbyte = name[i].getBytes();
@@ -48,7 +54,7 @@ class Serverdns {
 
             }
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
         }
     }
 }
