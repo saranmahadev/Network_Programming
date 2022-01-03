@@ -11,8 +11,6 @@ The program can be extended to read an IP Address / Mac Address and a message an
 */
 
 
-
-
 import java.io.*;
 import java.util.*;
 

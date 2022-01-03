@@ -4,9 +4,11 @@ import java.io.*;
 class EchoClient {
     public static void main(String args[]) throws IOException {        
         Socket soc = new Socket(InetAddress.getLocalHost(), 95);
+
         BufferedReader br = new BufferedReader(new InputStreamReader(soc.getInputStream()));
-        DataOutputStream dos = new DataOutputStream(soc.getOutputStream());
         BufferedReader kyrd = new BufferedReader(new InputStreamReader(System.in));
+
+        DataOutputStream dos = new DataOutputStream(soc.getOutputStream());
 
         System.out.println(
             "To start the dialog type the message in this client window \n Type exit to end"
@@ -19,7 +21,7 @@ class EchoClient {
             dos.write(10);
             dos.flush();            
             String s = br.readLine();
-            System.out.println("From server :" + s);
+            System.out.println("To server :" + s);
             if (s.equals("exit")) {
                 break;
             }
