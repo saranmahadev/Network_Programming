@@ -1,11 +1,7 @@
 import java.util.HashSet;
-
 import java.util.InputMismatchException;
-
 import java.util.Iterator;
-
 import java.util.Scanner;
-
 import java.util.Set;
 
  
@@ -15,28 +11,19 @@ public class Dijkstra
 {
 
     private int distances[];
-
     private Set<Integer> settled;
-
     private Set<Integer> unsettled;
-
     private int   number_of_nodes;
-
     private int   adjacencyMatrix[][];
 
  
     public Dijkstra(int number_of_nodes)
-
     {
 
         this.number_of_nodes = number_of_nodes;
-
         distances = new int[number_of_nodes + 1];
-
         settled = new HashSet<Integer>();
-
         unsettled = new HashSet<Integer>();
-
         adjacencyMatrix = new int[number_of_nodes + 1][number_of_nodes + 1];
 
     }
@@ -48,85 +35,48 @@ public class Dijkstra
     {
 
         int evaluationNode;
-
         for (int i = 1; i <= number_of_nodes; i++)
-
             for (int j = 1; j <= number_of_nodes; j++)
-
                 adjacencyMatrix[i][j] = adjacency_matrix[i][j];
 
- 
-
-        for (int i = 1; i <= number_of_nodes; i++)
-
+         for (int i = 1; i <= number_of_nodes; i++)
         {
-
             distances[i] = Integer.MAX_VALUE;
-
         }
 
- 
-
         unsettled.add(source);
-
         distances[source] = 0;
-
         while (!unsettled.isEmpty())
-
         {
-
             evaluationNode = getNodeWithMinimumDistanceFromUnsettled();
-
             unsettled.remove(evaluationNode);
-
             settled.add(evaluationNode);
-
             evaluateNeighbours(evaluationNode);
-
         }
 
     }
 
- 
 
     private int getNodeWithMinimumDistanceFromUnsettled()
-
     {
 
         int min;
-
         int node = 0;
-
- 
-
         Iterator<Integer> iterator = unsettled.iterator();
-
         node = iterator.next();
-
         min = distances[node];
 
         for (int i = 1; i <= distances.length; i++)
-
         {
-
             if (unsettled.contains(i))
-
             {
-
                 if (distances[i] <= min)
-
                 {
-
                     min = distances[i];
-
                     node = i;
-
                 }
-
             }
-
         }
-
         return node;
 
     }
@@ -134,15 +84,9 @@ public class Dijkstra
  
 
     private void evaluateNeighbours(int evaluationNode)
-
     {
-
         int edgeDistance = -1;
-
         int newDistance = -1;
-
- 
-
         for (int destinationNode = 1; destinationNode <= number_of_nodes; destinationNode++)
 
         {
@@ -237,46 +181,23 @@ public class Dijkstra
 
             }
 
- 
-
             System.out.println("Enter the source ");
-
             source = scan.nextInt();
-
- 
-
             System.out.println("Enter the destination ");
-
             destination = scan.nextInt();
-
- 
-
             Dijkstra dijkstrasAlgorithm = new Dijkstra(number_of_vertices);
-
             dijkstrasAlgorithm.dijkstra_algorithm(adjacency_matrix, source);
-
- 
-
             System.out.println("The Shorted Path from " + source + " to " + destination + " is: ");
-
             for (int i = 1; i <= dijkstrasAlgorithm.distances.length - 1; i++)
-
             {
-
                 if (i == destination)
-
                     System.out.println(dijkstrasAlgorithm.distances[i]);
-
             }
 
         } catch (InputMismatchException inputMismatch)
-
         {
-
             System.out.println("Wrong Input Format");
-
         }
-
         scan.close();
 
     }
